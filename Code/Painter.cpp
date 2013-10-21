@@ -12,8 +12,8 @@ using std::endl;
 
 Painter::Painter(void)
 {
+	this->startup();
 }
-
 
 Painter::~Painter(void)
 {
@@ -134,9 +134,9 @@ void Painter::load(string fileName)
 void Painter::paint()
 {
 	//variables from player
-	int width = player.width;
-	int height = player.height;
-	float* frameBuffer = player.frameBuffer;
+	width = player.width;
+	height = player.height;
+	frameBuffer = player.frameBuffer;
 	
 	//eye, right, up vectors.
 	Vector eyeRay(camTarget - camPosition);
@@ -150,18 +150,7 @@ void Painter::paint()
 	h *= hl;
 
 	//compute colors for each pixel.
-	for (int j = height - 1; j >= 0; j--) {
-		for (int i = 0; i != width; i++) {
-			Vector color(0, 0, 0);
-			float x, y;
-
-			x = (i + 0.5f) / width * 2 - 1.0f; y = (j + 0.5f) / height * 2 - 1.0f;
-			color = paint(camTarget + w*x + h*y - camPosition);
-
-			float* c = &frameBuffer[j * width * 3 + i * 3];
-			c[0] = color.x; c[1] = color.y; c[2] = color.z;
-		}
-	}
+	this->run();
 }
 
 Vector Painter::paint(Vector& ray)
@@ -186,4 +175,34 @@ void Painter::unload()
 {
 	for (int i = 0; i != objList.size(); i++)
 		delete objList[i];
+}
+
+void Painter::generateTasks()
+{
+	if (input==nullptr)
+		input = new int[player.height];
+	for (int i = 0; i != player.height; i++) {
+		input[i] = i;
+		tasks[i%threadCount].push_back(&input[i]);
+	}
+}
+
+void Painter::runTask(void* input)
+{
+	int j = *(int*) input;
+
+	for (int i = 0; i != width; i++) {
+		Vector color(0, 0, 0);
+		float x, y;
+
+		x = (i + 0.5f) / width * 2 - 1.0f; y = (j + 0.5f) / height * 2 - 1.0f;
+		color = paint(camTarget + w*x + h*y - camPosition);
+
+		float* c = &frameBuffer[j * width * 3 + i * 3];
+		c[0] = color.x; c[1] = color.y; c[2] = color.z;
+	}
+}
+
+void Painter::finishTasks()
+{
 }
