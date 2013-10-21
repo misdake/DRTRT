@@ -10,6 +10,28 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Code\Main.cpp" />
+    <ClCompile Include="..\Code\Matrix.cpp" />
+    <ClCompile Include="..\Code\Mesh.cpp" />
+    <ClCompile Include="..\Code\MultiThreadedWorker.cpp" />
+    <ClCompile Include="..\Code\Object.cpp" />
+    <ClCompile Include="..\Code\Painter.cpp" />
+    <ClCompile Include="..\Code\Player.cpp" />
+    <ClCompile Include="..\Code\Sphere.cpp" />
+    <ClCompile Include="..\Code\Vector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Code\Math.h" />
+    <ClInclude Include="..\Code\Matrix.h" />
+    <ClInclude Include="..\Code\Mesh.h" />
+    <ClInclude Include="..\Code\MultiThreadedWorker.h" />
+    <ClInclude Include="..\Code\Object.h" />
+    <ClInclude Include="..\Code\Painter.h" />
+    <ClInclude Include="..\Code\Player.h" />
+    <ClInclude Include="..\Code\Sphere.h" />
+    <ClInclude Include="..\Code\Vector.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{561939DF-4172-44DF-9205-C90C66B8F8A0}</ProjectGuid>
     <RootNamespace>Server</RootNamespace>
@@ -72,24 +94,6 @@
       <AdditionalDependencies>Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\RT Code\Math.h" />
-    <ClInclude Include="..\RT Code\Matrix.h" />
-    <ClInclude Include="..\RT Code\Mesh.h" />
-    <ClInclude Include="..\RT Code\Object.h" />
-    <ClInclude Include="..\RT Code\Painter.h" />
-    <ClInclude Include="..\RT Code\Sphere.h" />
-    <ClInclude Include="..\RT Code\Vector.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\RT Code\Main.cpp" />
-    <ClCompile Include="..\RT Code\Matrix.cpp" />
-    <ClCompile Include="..\RT Code\Mesh.cpp" />
-    <ClCompile Include="..\RT Code\Object.cpp" />
-    <ClCompile Include="..\RT Code\Painter.cpp" />
-    <ClCompile Include="..\RT Code\Sphere.cpp" />
-    <ClCompile Include="..\RT Code\Vector.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -8,11 +8,11 @@ using std::vector;
 #include "Vector.h"
 #include "Object.h"
 
-class Painter
+class Player
 {
 public:
-	Painter(void);
-	~Painter(void);
+	Player(void);
+	~Player(void);
 
 	void load(string fileName);
 	void setCameraPosition(float x, float y, float z) { camPosition = Vector(x,y,z); };
@@ -20,7 +20,7 @@ public:
 	void setCameraUp(float x, float y, float z) { camUp = Vector(x,y,z); };
 	void setCameraFov(float fov) { this->fov = fov; };
 
-	void paint(bool enableSSAA);
+	void paint();
 
 	void unload();
 

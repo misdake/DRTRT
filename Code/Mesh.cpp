@@ -22,7 +22,7 @@ bool Mesh::rayTest( Vector start, Vector d, float zMax, float& distance, Vector&
 		Vector p0 = start;
 		Vector p1 = start + d*100.0f;
 		//-------------------------------------------------
-		//from book <<Real-Time Collision Detection>> 5.3.3.
+		//from book <<Real-Time Collision Detection>> 5.3.3
 		//Nice book, don't you think?
 		Vector e = max - min;
 		Vector d = p1 - p0;

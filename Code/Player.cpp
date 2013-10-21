@@ -1,4 +1,4 @@
-#include "Painter.h"
+#include "Player.h"
 
 #include <Windows.h>
 #include "../GL Lib/glut.h"
@@ -12,34 +12,17 @@ using std::string;
 using std::cout;
 using std::endl;
 
-Painter::Painter(void)
+Player::Player(void)
 {
 }
 
 
-Painter::~Painter(void)
+Player::~Player(void)
 {
 }
 
-void Painter::load( string fileName )
-{/*
-	Sphere* p;
-
-	Matrix::translate(0,1,1);
-	p= new Sphere();
-	p->x=0; p->y=0; p->z=0; p->r=1;
-	p->color=Vector(1,1,1);
-	p->getMatrix();
-	objList.push_back(p);
-
-	Matrix::popMatrix();
-	Matrix::scale(1,0.1,0.2);
-	p = new Sphere();
-	p->x=0; p->y=0; p->z=0; p->r=1;
-	p->color=Vector(1,1,1);
-	p->getMatrix();
-	objList.push_back(p);*/
-
+void Player::load( string fileName )
+{
 	vector<Vector> originalVertices;
 	Mesh* currentMesh = 0;
 
@@ -148,9 +131,12 @@ void Painter::load( string fileName )
 	}
 }
 
-void Painter::paint(bool enableSSAA)
+void Player::paint()
 {
-	static long time = timeGetTime();
+	static DWORD time = timeGetTime();
+	DWORD last = time;
+	time = timeGetTime();
+	cout << time - last << endl;
 
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -171,54 +157,23 @@ void Painter::paint(bool enableSSAA)
 	for(int j=height-1; j>=0; j--) {
 		for(int i=0; i!=width; i++) {
 			Vector color(0,0,0);
-			float x,y;
+			float x, y;
 
-			if(enableSSAA) {
-				x=(i+0.5f   -0.25f   )/width*2-1.0f; y=(j+0.5f   -0.25f   )/height*2-1.0f;
-				color += paint(camTarget + w*x + h*y - camPosition) * 0.25f;
-				x=(i+0.5f   +0.25f   )/width*2-1.0f; y=(j+0.5f   -0.25f   )/height*2-1.0f;
-				color += paint(camTarget + w*x + h*y - camPosition) * 0.25f;
-				x=(i+0.5f   -0.25f   )/width*2-1.0f; y=(j+0.5f   +0.25f   )/height*2-1.0f;
-				color += paint(camTarget + w*x + h*y - camPosition) * 0.25f;
-				x=(i+0.5f   +0.25f   )/width*2-1.0f; y=(j+0.5f   +0.25f   )/height*2-1.0f;
-				color += paint(camTarget + w*x + h*y - camPosition) * 0.25f;
-			} else {
-				x=(i+0.5f)/width*2-1.0f; y=(j+0.5f)/height*2-1.0f;
-				color = paint(camTarget + w*x + h*y - camPosition);
-			}
+			x = (i + 0.5f) / width * 2 - 1.0f; y = (j + 0.5f) / height * 2 - 1.0f;
+			color = paint(camTarget + w*x + h*y - camPosition);
+
 			float* c = &frameBuffer[j * width * 3 + i * 3];
 			c[0] = color.x; c[1] = color.y; c[2] = color.z;
 		}
 	}
 
-	cout << timeGetTime() - time << endl;
-	long time2 = timeGetTime();
-	/*
-	glPointSize(1);
-	glBegin(GL_POINT);
-	for (int j = 0; j != height; j++) {
-		for (int i = 0; i != width; i++) {
-			float x, y;
-			x = (i + 0.5f) / width * 2 - 1.0f; y = (j + 0.5f) / height * 2 - 1.0f;
-			glColor3f(
-				frameBuffer[j * width * 3 + i * 3 + 0],
-				frameBuffer[j * width * 3 + i * 3 + 1],
-				frameBuffer[j * width * 3 + i * 3 + 2]);
-			glVertex2f(x, y);
-		}
-	}
-	glEnd();
-	*/
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glDrawPixels(width, height, GL_RGB, GL_FLOAT, frameBuffer);
 
-	cout << time2 - time << endl;
-
-	time = time2;
 	glutSwapBuffers();
 }
 
-Vector Painter::paint( Vector& ray )
+Vector Player::paint( Vector& ray )
 {
 	ray.normalize();
 	float z=1000.0f;
@@ -236,7 +191,7 @@ Vector Painter::paint( Vector& ray )
 	return color;
 }
 
-void Painter::unload()
+void Player::unload()
 {
 	for(int i=0; i!=objList.size(); i++)
 		delete objList[i];

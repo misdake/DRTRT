@@ -3,19 +3,18 @@ using namespace std;
 
 #include <math.h>
 #include "../GL Lib/glut.h"
-#include "Painter.h"
+#include "Player.h"
 
-Painter painter;
+Player painter;
 
 void myDisplay() {
-	bool SSAA = false;
-	painter.paint(SSAA);
+	painter.paint();
 }
 
 int main(int argc, char *argv[]) {	
 	glutInit(&argc, argv);
 
-	argv[2]="scene1.test";
+	argv[2]="../Scene/scene1.test";
 	painter.load(argv[2]);
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
