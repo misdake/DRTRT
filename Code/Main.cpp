@@ -4,11 +4,14 @@ using namespace std;
 #include <math.h>
 #include "../GL Lib/glut.h"
 #include "Player.h"
+#include "Painter.h"
 
-Player painter;
+Painter painter;
+Player player;
 
 void myDisplay() {
 	painter.paint();
+	player.display();
 }
 
 int main(int argc, char *argv[]) {	
@@ -18,7 +21,7 @@ int main(int argc, char *argv[]) {
 	painter.load(argv[2]);
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(painter.width, painter.height);
+	glutInitWindowSize(player.width, player.height);
 	glutInitWindowPosition(0,0);
 	glutCreateWindow("DRTRT");
 	
