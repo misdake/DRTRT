@@ -6,7 +6,6 @@ using std::string;
 using std::vector;
 
 #include "Vector.h"
-#include "Object.h"
 
 class Player
 {
@@ -27,5 +26,10 @@ public:
 		this->width = width;
 		this->height = height;
 		frameBuffer = new float[width * height * 3];
+	}
+
+	inline void setPixel(int left, int top, float r, float g, float b) {
+		float* c = &frameBuffer[top * width * 3 + left * 3];
+		c[0] = r; c[1] = g; c[2] = b;
 	}
 };

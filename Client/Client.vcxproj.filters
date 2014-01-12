@@ -1,11 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <Filter Include="Client">
-      <UniqueIdentifier>{69cebf5f-6a44-4344-81bf-bc678ba673b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Ray Tracing">
-      <UniqueIdentifier>{fba44989-6bfe-4958-9e9c-c13545f651a7}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-</Project>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />

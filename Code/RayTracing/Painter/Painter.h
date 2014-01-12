@@ -7,9 +7,9 @@ using std::vector;
 
 #include "Vector.h"
 #include "MultiThreadedWorker.h"
+#include "Object.h"
 
-#include "Player.h"
-extern Player player;
+#include "Main.h"
 
 class Painter : public MultiThreadedWorker {
 public:

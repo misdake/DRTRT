@@ -33,9 +33,9 @@ void Painter::load(string fileName)
 		string s;
 		l >> s;
 		if (s == "size") {
-			float w, h;
+			int w, h;
 			l >> w >> h;
-			player.setSize(w, h);
+			player->setSize(w, h);
 		} else if (s == "maxdepth") {
 			//作用不大 没实现
 		} else if (s == "output") {
@@ -73,7 +73,7 @@ void Painter::load(string fileName)
 				currentMesh->color = currentColor;
 				objList.push_back(currentMesh);
 			}
-			float x, y, z;
+			int x, y, z;
 			l >> x >> y >> z;
 			Vector* v = new Vector[3];
 			v[0] = originalVertices[x]; v[1] = originalVertices[y]; v[2] = originalVertices[z];
@@ -134,9 +134,9 @@ void Painter::load(string fileName)
 void Painter::paint()
 {
 	//variables from player
-	width = player.width;
-	height = player.height;
-	frameBuffer = player.frameBuffer;
+	width = player->width;
+	height = player->height;
+	frameBuffer = player->frameBuffer;
 	
 	//eye, right, up vectors.
 	Vector eyeRay(camTarget - camPosition);
@@ -180,8 +180,8 @@ void Painter::unload()
 void Painter::generateTasks()
 {
 	if (input==nullptr)
-		input = new int[player.height];
-	for (int i = 0; i != player.height; i++) {
+		input = new int[player->height];
+	for (int i = 0; i != player->height; i++) {
 		input[i] = i;
 		tasks[i%threadCount].push_back(&input[i]);
 	}
@@ -198,8 +198,7 @@ void Painter::runTask(void* input)
 		x = (i + 0.5f) / width * 2 - 1.0f; y = (j + 0.5f) / height * 2 - 1.0f;
 		color = paint(camTarget + w*x + h*y - camPosition);
 
-		float* c = &frameBuffer[j * width * 3 + i * 3];
-		c[0] = color.x; c[1] = color.y; c[2] = color.z;
+		player->setPixel(i, j, color.x, color.y, color.z);
 	}
 }
 

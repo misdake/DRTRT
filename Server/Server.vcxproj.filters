@@ -1,81 +1,114 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Ray Tracing">
-      <UniqueIdentifier>{6df4fe24-dace-404d-aafd-b5041a04d50c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Server">
-      <UniqueIdentifier>{783fa78d-e828-40dc-b79e-1c2c0ba860a2}</UniqueIdentifier>
+      <UniqueIdentifier>{8f3ae88a-6e20-4a98-a068-02cc32cfd55b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{c6ffcda9-44f8-42d1-87f3-91c2783fdeaf}</UniqueIdentifier>
+    <Filter Include="RayTracing">
+      <UniqueIdentifier>{2a612533-84eb-447d-8fa3-f96aafe32268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{4c80c80c-679a-461d-a998-8f5ce167fd3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RayTracing\Object">
+      <UniqueIdentifier>{353e9772-af11-4043-8fd1-894ab7161ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RayTracing\Painter">
+      <UniqueIdentifier>{85d93d26-21e2-4a78-8d82-2c7a4656c360}</UniqueIdentifier>
     </Filter>
     <Filter Include="Util">
-      <UniqueIdentifier>{2a0138f0-9f12-4ce8-9b33-3c255166171a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Ray Tracing\Painter">
-      <UniqueIdentifier>{8080cd3f-c97a-4cf7-9d2a-bc5d49d23591}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Ray Tracing\Object">
-      <UniqueIdentifier>{b119923e-4c8b-4605-88b3-904bec49f738}</UniqueIdentifier>
+      <UniqueIdentifier>{82dc85eb-8188-40ec-8494-b3420b48b0a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Code\Matrix.cpp">
+    <ClInclude Include="..\Code\Network\JobSet.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Network\NetworkNode.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Network\Node.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Network\ImagePacket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Object\Object.h">
+      <Filter>RayTracing\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Object\Sphere.h">
+      <Filter>RayTracing\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Object\Mesh.h">
+      <Filter>RayTracing\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Painter\Painter.h">
+      <Filter>RayTracing\Painter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Server\ServerNode.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Server\ServerPlayer.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Util\MultiThreadedWorker.h">
       <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\MultiThreadedWorker.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Code\Util\Matrix.h">
       <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Vector.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Code\Util\Vector.h">
       <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Object.cpp">
-      <Filter>Ray Tracing\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Sphere.cpp">
-      <Filter>Ray Tracing\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Mesh.cpp">
-      <Filter>Ray Tracing\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Painter.cpp">
-      <Filter>Ray Tracing\Painter</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Main.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="..\Code\Util\MyMath.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Player\Player.h" />
+    <ClInclude Include="..\Code\Server\Main.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Code\Matrix.h">
+    <ClCompile Include="..\Code\Network\NetworkNode.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Network\Node.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Network\ImagePacket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Network\JobSet.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Object\Object.cpp">
+      <Filter>RayTracing\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Object\Sphere.cpp">
+      <Filter>RayTracing\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Object\Mesh.cpp">
+      <Filter>RayTracing\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Painter\Painter.cpp">
+      <Filter>RayTracing\Painter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Server\ServerNode.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Server\Main.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Server\ServerPlayer.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Util\MultiThreadedWorker.cpp">
       <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\MultiThreadedWorker.h">
+    </ClCompile>
+    <ClCompile Include="..\Code\Util\Matrix.cpp">
       <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Vector.h">
+    </ClCompile>
+    <ClCompile Include="..\Code\Util\Vector.cpp">
       <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Math.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Mesh.h">
-      <Filter>Ray Tracing\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Object.h">
-      <Filter>Ray Tracing\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Sphere.h">
-      <Filter>Ray Tracing\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Painter.h">
-      <Filter>Ray Tracing\Painter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Player\Player.cpp" />
   </ItemGroup>
 </Project>

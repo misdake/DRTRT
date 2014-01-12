@@ -1,7 +1,7 @@
 #include "Player.h"
 
 #include <Windows.h>
-#include "../GL Lib/glut.h"
+#include "../../GL Lib/glut.h"
 #include <iostream>
 using std::string;
 using std::cout;
