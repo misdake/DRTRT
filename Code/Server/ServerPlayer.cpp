@@ -20,16 +20,26 @@ void ServerPlayer::paint() {
 
 	//build job sets. dispatch.
 
-	painter.paint(/*jobSet*/);
+	//server rendering & waiting for clients.
+	//painter.paint(/*jobSet*/);
 
-	for(int i=0; i!=height ; i++)
-		while(!valid)
-			std::this_thread::yield();
+	//delete these two lines. just to test filling hole functionality.
+	JobSet c(0, 0);
+	painter.paint(&c);
+
+	//wait & fill unfinished lines.
+	for(int i=height-1; i>=0 ; i--) {
+		if(!valid[i]) {
+			painter.runTask(i);
+		}
+	}
 }
 
 void ServerPlayer::combine(int top, float* data) {
-	Player::combine(top, data);
-	valid[top] = true;
+	if(!valid[top]) {
+		Player::combine(top, data);
+		valid[top] = true;
+	}
 }
 
 void ServerPlayer::receive(char* buf, unsigned long ip) {

@@ -154,6 +154,7 @@ void Painter::paint()
 }
 
 void Painter::paint(JobSet * jobSet) {
+	this->jobSet = jobSet;
 	//copy from Player.
 	this->camPosition = player->camPosition;
 	this->camTarget = player->camTarget;
@@ -229,6 +230,11 @@ void Painter::runTask(void* input, int index)
 	}
 
 	player->combine(j, line);
+}
+
+void Painter::runTask( int input ) {
+	if(finished)
+		runTask(&input, 0);
 }
 
 void Painter::finishTasks()

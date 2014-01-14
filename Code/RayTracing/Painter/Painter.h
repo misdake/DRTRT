@@ -21,6 +21,7 @@ public:
 
 	void paint();
 	void paint(JobSet*);
+	void runTask(int);
 
 	void unload();
 

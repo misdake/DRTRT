@@ -27,11 +27,12 @@ protected:
 	//after all tasks
 	virtual void finishTasks() = 0;
 
+	bool finished;
+
 private:
 	thread* workers;
 	bool *workerStart, *workerFinish;
 	bool killAllWorkers;
-	bool finished;
 	void workerFunction(int);
 };
 
