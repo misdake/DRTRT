@@ -85,7 +85,7 @@ void MultiThreadedWorker::workerFunction(int index) {
 
 		//run
 		for (void* task : tasks[index]) {
-			runTask(task);
+			runTask(task, index);
 		}
 
 		//finish

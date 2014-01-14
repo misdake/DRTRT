@@ -22,7 +22,7 @@ protected:
 	vector<void*> *tasks;
 
 	//function for each task
-	virtual void runTask(void*) = 0;
+	virtual void runTask(void*, int) = 0;
 
 	//after all tasks
 	virtual void finishTasks() = 0;

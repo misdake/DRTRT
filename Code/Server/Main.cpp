@@ -6,12 +6,17 @@
 #include "ServerPlayer.h"
 #include "Painter.h"
 
-Painter painter;
 Player * player;
 
+void myKeyboardUp(unsigned char key, int x, int y) {
+	player->keyUp(key);
+}
+void myKeyboardDown(unsigned char key, int x, int y) {
+	player->keyDown(key);
+}
+
 void myDisplay() {
-	painter.paint();
-	player->display();
+	player->frame();
 }
 
 int main(int argc, char *argv[]) {	
@@ -20,13 +25,15 @@ int main(int argc, char *argv[]) {
 	player = new ServerPlayer();
 
 	argv[2]="../Scene/scene1.test";
-	painter.load(argv[2]);
+	player->load(argv[2]);
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(player->width, player->height);
 	glutInitWindowPosition(0,0);
 	glutCreateWindow("DRTRT");
-	
+
+	glutKeyboardUpFunc(myKeyboardUp);
+	glutKeyboardFunc(myKeyboardDown);
 	glutDisplayFunc(myDisplay);
 	glutIdleFunc(myDisplay);
 	

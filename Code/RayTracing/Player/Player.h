@@ -6,6 +6,7 @@ using std::string;
 using std::vector;
 
 #include "Vector.h"
+#include "Painter.h"
 
 class Player
 {
@@ -13,11 +14,24 @@ public:
 	Player(void);
 	~Player(void);
 
+	void keyUp(unsigned char key);
+	void keyDown(unsigned char key);
+	virtual void load(string);
 
+	void frame();
+	float frameTime;
+
+	void input();
+	virtual void paint();
 	void display();
 
 	int width, height;
 	float * frameBuffer;
+
+	Vector camPosition;
+	Vector camTarget;
+	Vector camUp;
+	float fov;
 
 	void setSize(int width, int height) {
 		if (frameBuffer != nullptr) {
@@ -28,8 +42,12 @@ public:
 		frameBuffer = new float[width * height * 3];
 	}
 
-	inline void setPixel(int left, int top, float r, float g, float b) {
-		float* c = &frameBuffer[top * width * 3 + left * 3];
-		c[0] = r; c[1] = g; c[2] = b;
+	virtual void combine(int top, float* data) {
+		memcpy(&frameBuffer[3 * top * width], data, 3 * width * 4);
 	}
+
+protected:
+	float camXSpeed, camYSpeed;
+
+	Painter painter;
 };

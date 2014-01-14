@@ -45,9 +45,6 @@
     <ClInclude Include="..\Code\RayTracing\Painter\Painter.h">
       <Filter>RayTracing\Painter</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\Server\ServerNode.h">
-      <Filter>Server</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\Server\ServerPlayer.h">
       <Filter>Server</Filter>
     </ClInclude>
@@ -63,8 +60,12 @@
     <ClInclude Include="..\Code\Util\MyMath.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\RayTracing\Player\Player.h" />
-    <ClInclude Include="..\Code\Server\Main.h" />
+    <ClInclude Include="..\Code\Server\Main.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Player\Player.h">
+      <Filter>RayTracing\Painter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Network\NetworkNode.cpp">
@@ -91,9 +92,6 @@
     <ClCompile Include="..\Code\RayTracing\Painter\Painter.cpp">
       <Filter>RayTracing\Painter</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Server\ServerNode.cpp">
-      <Filter>Server</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\Server\Main.cpp">
       <Filter>Server</Filter>
     </ClCompile>
@@ -109,6 +107,8 @@
     <ClCompile Include="..\Code\Util\Vector.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\RayTracing\Player\Player.cpp" />
+    <ClCompile Include="..\Code\RayTracing\Player\Player.cpp">
+      <Filter>RayTracing\Painter</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

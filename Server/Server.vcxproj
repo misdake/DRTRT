@@ -22,7 +22,6 @@
     <ClInclude Include="..\Code\RayTracing\Player\Player.h" />
     <ClInclude Include="..\Code\Server\Main.h" />
     <ClInclude Include="..\Code\Server\ServerPlayer.h" />
-    <ClInclude Include="..\Code\Server\ServerNode.h" />
     <ClInclude Include="..\Code\Util\MyMath.h" />
     <ClInclude Include="..\Code\Util\Matrix.h" />
     <ClInclude Include="..\Code\Util\MultiThreadedWorker.h" />
@@ -40,7 +39,6 @@
     <ClCompile Include="..\Code\RayTracing\Player\Player.cpp" />
     <ClCompile Include="..\Code\Server\Main.cpp" />
     <ClCompile Include="..\Code\Server\ServerPlayer.cpp" />
-    <ClCompile Include="..\Code\Server\ServerNode.cpp" />
     <ClCompile Include="..\Code\Util\Matrix.cpp" />
     <ClCompile Include="..\Code\Util\MultiThreadedWorker.cpp" />
     <ClCompile Include="..\Code\Util\Vector.cpp" />
@@ -76,12 +74,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ReferencePath>C:\Project\DRTRT\GL Lib;$(ReferencePath)</ReferencePath>
     <LibraryPath>C:\Project\DRTRT\GL Lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Project\DRTRT\Code\RayTracing\Player;C:\Project\DRTRT\Code\Server;C:\Project\DRTRT\Code\RayTracing\Painter;C:\Project\DRTRT\Code\RayTracing\Object;C:\Project\DRTRT\Code\Util;C:\Project\DRTRT\Code;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Project\DRTRT\Code\Network;C:\Project\DRTRT\Code\RayTracing\Player;C:\Project\DRTRT\Code\Server;C:\Project\DRTRT\Code\RayTracing\Painter;C:\Project\DRTRT\Code\RayTracing\Object;C:\Project\DRTRT\Code\Util;C:\Project\DRTRT\Code;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ReferencePath>C:\Project\DRTRT\GL Lib;$(ReferencePath)</ReferencePath>
     <LibraryPath>C:\Project\DRTRT\GL Lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Project\DRTRT\Code\RayTracing\Player;C:\Project\DRTRT\Code\Server;C:\Project\DRTRT\Code\RayTracing\Painter;C:\Project\DRTRT\Code\RayTracing\Object;C:\Project\DRTRT\Code\Util;C:\Project\DRTRT\Code;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Project\DRTRT\Code\Network;C:\Project\DRTRT\Code\RayTracing\Player;C:\Project\DRTRT\Code\Server;C:\Project\DRTRT\Code\RayTracing\Painter;C:\Project\DRTRT\Code\RayTracing\Object;C:\Project\DRTRT\Code\Util;C:\Project\DRTRT\Code;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

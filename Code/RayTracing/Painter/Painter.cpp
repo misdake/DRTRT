@@ -10,6 +10,8 @@ using std::string;
 using std::cout;
 using std::endl;
 
+#include "Player.h"
+
 Painter::Painter(void)
 {
 	this->startup();
@@ -43,13 +45,13 @@ void Painter::load(string fileName)
 		} else if (s == "camera") {
 			float x, y, z;
 			l >> x >> y >> z;
-			setCameraPosition(x, y, z);
+			player->camPosition = Vector(x, y, z);
 			l >> x >> y >> z;
-			setCameraTarget(x, y, z);
+			player->camTarget = Vector(x, y, z);
 			l >> x >> y >> z;
-			setCameraUp(x, y, z);
+			player->camUp = Vector(x, y, z);
 			l >> x;
-			setCameraFov(x / 180 * pi);
+			player->fov = (x / 180 * pi);
 		} else if (s == "sphere") {
 			float x, y, z, r;
 			l >> x >> y >> z >> r;
@@ -129,15 +131,35 @@ void Painter::load(string fileName)
 			//Ã»ÊµÏÖ
 		}
 	}
-}
 
-void Painter::paint()
-{
 	//variables from player
 	width = player->width;
 	height = player->height;
 	frameBuffer = player->frameBuffer;
-	
+
+	lineBuffer = new float*[threadCount];
+	for(int i=0; i!=threadCount; i++) {
+		lineBuffer[i] = new float[3 * width];
+	}
+}
+
+void Painter::paint()
+{
+	jobSet = new JobSet(0, player->height);
+	for(int i=0; i!=jobSet->jobCount; i++) {
+		jobSet->jobs[i] = i;
+	}
+	paint(jobSet);
+	delete jobSet;
+}
+
+void Painter::paint(JobSet * jobSet) {
+	//copy from Player.
+	this->camPosition = player->camPosition;
+	this->camTarget = player->camTarget;
+	this->camUp = player->camUp;
+	this->fov = player->fov;
+
 	//eye, right, up vectors.
 	Vector eyeRay(camTarget - camPosition);
 	float hl = tanf(fov / 2)*eyeRay.length();
@@ -175,21 +197,24 @@ void Painter::unload()
 {
 	for (int i = 0; i != objList.size(); i++)
 		delete objList[i];
+
+	for(int i=0; i!=threadCount; i++) {
+		delete[] lineBuffer[i];
+	}
+	delete[] lineBuffer;
 }
 
 void Painter::generateTasks()
 {
-	if (input==nullptr)
-		input = new int[player->height];
-	for (int i = 0; i != player->height; i++) {
-		input[i] = i;
-		tasks[i%threadCount].push_back(&input[i]);
+	for (int i = 0; i != jobSet->jobCount; i++) {
+		tasks[i%threadCount].push_back(&jobSet->jobs[i]);
 	}
 }
 
-void Painter::runTask(void* input)
+void Painter::runTask(void* input, int index)
 {
 	int j = *(int*) input;
+	float * line = lineBuffer[index];
 
 	for (int i = 0; i != width; i++) {
 		Vector color(0, 0, 0);
@@ -198,8 +223,12 @@ void Painter::runTask(void* input)
 		x = (i + 0.5f) / width * 2 - 1.0f; y = (j + 0.5f) / height * 2 - 1.0f;
 		color = paint(camTarget + w*x + h*y - camPosition);
 
-		player->setPixel(i, j, color.x, color.y, color.z);
+		line[i*3  ] = color.x;
+		line[i*3+1] = color.y;
+		line[i*3+2] = color.z;
 	}
+
+	player->combine(j, line);
 }
 
 void Painter::finishTasks()

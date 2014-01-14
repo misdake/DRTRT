@@ -9,6 +9,8 @@ using std::endl;
 
 Player::Player(void)
 {
+	camXSpeed = 0;
+	camYSpeed = 0;
 }
 
 
@@ -16,15 +18,62 @@ Player::~Player(void)
 {
 }
 
-void Player::display() {
+
+void Player::frame() {
 	//time thing.
 	static DWORD time = timeGetTime();
 	DWORD last = time;
 	time = timeGetTime();
-	cout << time - last << endl;
+	frameTime = static_cast<float>(time - last) * 0.001f;
+	cout << "frame time = " << time - last << "ms." << endl;
 
-	//display the frame buffer
+	input();
+	paint();
+	display();
+}
+
+void Player::input() {
+	float camXDistance = camXSpeed * frameTime;
+	float camYDistance = camYSpeed * frameTime;
+
+	camPosition.x += camXSpeed; camTarget.x += camXSpeed;
+	camPosition.y += camYSpeed; camTarget.y += camYSpeed;
+}
+
+
+void Player::paint() {
+	painter.paint();
+}
+
+void Player::display() {
 	glDrawPixels(width, height, GL_RGB, GL_FLOAT, frameBuffer);
-
 	glutSwapBuffers();
+}
+
+void Player::keyUp( unsigned char key ) {
+	if(key == 'w') {
+		camYSpeed = 0;
+	} else if(key == 's') {
+		camYSpeed = 0;
+	} else if(key == 'a') {
+		camXSpeed = 0;
+	} else if(key == 'd') {
+		camXSpeed = 0;
+	}
+}
+
+void Player::keyDown( unsigned char key ) {
+	if(key == 'w') {
+		camYSpeed = 1;
+	} else if(key == 's') {
+		camYSpeed = -1;
+	} else if(key == 'a') {
+		camXSpeed = -1;
+	} else if(key == 'd') {
+		camXSpeed = 1;
+	}
+}
+
+void Player::load(string fileName) {
+	painter.load(fileName);
 }

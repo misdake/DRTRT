@@ -9,6 +9,7 @@ using std::vector;
 #include "MultiThreadedWorker.h"
 #include "Object.h"
 
+#include "JobSet.h"
 #include "Main.h"
 
 class Painter : public MultiThreadedWorker {
@@ -17,12 +18,9 @@ public:
 	~Painter();
 
 	void load(string fileName);
-	void setCameraPosition(float x, float y, float z) { camPosition = Vector(x, y, z); };
-	void setCameraTarget(float x, float y, float z) { camTarget = Vector(x, y, z); };
-	void setCameraUp(float x, float y, float z) { camUp = Vector(x, y, z); };
-	void setCameraFov(float fov) { this->fov = fov; };
 
 	void paint();
+	void paint(JobSet*);
 
 	void unload();
 
@@ -30,12 +28,14 @@ private:
 	vector<Object*> objList;
 	Vector currentColor;
 
-	int* input;
+	JobSet * jobSet;
+	float** lineBuffer;
 	Vector paint(Vector& targetPoint);
 	virtual void generateTasks();
-	virtual void runTask(void*);
+	virtual void runTask(void*, int);
 	virtual void finishTasks();
 
+	//copied from Player every frame.
 	Vector camPosition;
 	Vector camTarget;
 	Vector camUp;
