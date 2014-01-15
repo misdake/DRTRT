@@ -13,7 +13,9 @@ public:
 	void startup(int);
 	void startup();
 	bool run();
+	void clear();
 	void shutdown();
+	bool finished;
 
 protected:
 	//fill in tasks list for each worker.
@@ -27,7 +29,6 @@ protected:
 	//after all tasks
 	virtual void finishTasks() = 0;
 
-	bool finished;
 
 private:
 	thread* workers;

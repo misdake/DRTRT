@@ -28,5 +28,7 @@ protected:
 	int frameId;
 
 private:
+	int fillCount;
+	int takeCount;
 	bool * valid; //bool[height]; valid[i]==true -> frameBuffer[i] full.
 };

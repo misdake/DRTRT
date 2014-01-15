@@ -72,6 +72,10 @@ bool MultiThreadedWorker::run() {
 	return true;
 }
 
+void MultiThreadedWorker::clear() {
+	finished = true;
+}
+
 void MultiThreadedWorker::workerFunction(int index) {
 	for (;;) {
 		//wait for tasks
@@ -85,6 +89,8 @@ void MultiThreadedWorker::workerFunction(int index) {
 
 		//run
 		for (void* task : tasks[index]) {
+			if(finished)
+				break;
 			runTask(task, index);
 		}
 

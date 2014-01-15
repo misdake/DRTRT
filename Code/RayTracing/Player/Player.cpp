@@ -20,13 +20,6 @@ Player::~Player(void)
 
 
 void Player::frame() {
-	//time thing.
-	static DWORD time = timeGetTime();
-	DWORD last = time;
-	time = timeGetTime();
-	frameTime = static_cast<float>(time - last) * 0.001f;
-	cout << "frame time = " << time - last << "ms." << endl;
-
 	input();
 	paint();
 	display();

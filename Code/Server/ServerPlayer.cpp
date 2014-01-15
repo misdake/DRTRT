@@ -8,7 +8,7 @@ using std::endl;
 #include <fstream>
 using std::ifstream;
 
-ServerPlayer::ServerPlayer() : Player(), NetworkNode(CLIENT_RECEIVE_PORT, SERVER_RECEIVE_PORT), frameId(0) {
+ServerPlayer::ServerPlayer() : Player(), NetworkNode(CLIENT_RECEIVE_PORT, SERVER_RECEIVE_PORT), frameId(0), takeCount(0) {
 	valid = nullptr;
 }
 
@@ -20,16 +20,27 @@ ServerPlayer::~ServerPlayer() {
 }
 
 void ServerPlayer::paint() {
+
+	//time thing.
+	static DWORD firstTime = timeGetTime();
+	static DWORD time = timeGetTime();
+	DWORD last = time;
+	time = timeGetTime();
+	frameTime = static_cast<float>(time - last) * 0.001f;
+	//cout << "frame time = " << time - last << "ms." << endl;
+
 	frameId++;
 
 	memset(valid, 0, height * sizeof(bool));
-
 
 	//select job set.
 	int clientCount = clients.size() + 1;
 	vector<int> * jobs = new vector<int>[clientCount];
 	for(int i=0; i!=height; i++) {
-		jobs[i % clientCount].push_back(i);
+		if(i < takeCount)
+			jobs[0].push_back(i);
+		else
+			jobs[i % clientCount].push_back(i);
 	}
 
 	//build job sets. dispatch.
@@ -42,30 +53,31 @@ void ServerPlayer::paint() {
 	jobSets[0] = new JobSet(frameId, jobs[0]);
 	JobSet job(jobSets[0]->buffer);
 	painter.paint(&job);
-	
 	std::this_thread::yield();
-
-	//delete these two lines. just to test filling hole functionality.
-	//JobSet c(0, 0);
-	//painter.paint(&c);
 
 	//painter.paint();
 
 	//wait & fill unfinished lines.
-	int fillCount = 0;
+	fillCount = 0;
 	for(int i=height-1; i>=0 ; i--) {
 		if(!valid[i]) {
 			painter.runTask(i);
 			fillCount++;
 		}
 	}
-	//cout<<"Fill Count = "<<fillCount<<endl;
+	takeCount += fillCount;
+	takeCount -= takeCount / 4;
+
+	//cout<<"Fill Count = "<<fillCount<<","<<takeCount<<endl;
 
 	for(int i=0; i!=clientCount; i++) {
 		//delete jobSets[i];
 	}
 	delete[] jobSets;
 	delete[] jobs;
+
+	if(frameId == 100)
+		cout << "frame time = " << timeGetTime() - firstTime << "ms." << endl;
 }
 
 void ServerPlayer::combine(int top, float* data) {
