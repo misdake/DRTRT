@@ -14,18 +14,19 @@ JobSet::JobSet( char* encodedData ) : jobs(nullptr), buffer(nullptr) {
 
 	int * bufferInt = (int*)bufferFloat;
 	id = *bufferInt++;
-	int count = *bufferInt++;
-	jobs = new int[count];
-	for(int i=0; i!=count; i++) {
+	jobCount = *bufferInt++;
+	jobs = new int[jobCount];
+	for(int i=0; i!=jobCount; i++) {
 		jobs[i] = *bufferInt++;
 	}
 }
 
 JobSet::JobSet( int id, vector<int>& jobs ) : jobs(nullptr), buffer(nullptr) {
-	int jobCount = jobs.size();
+	jobCount = jobs.size();
 	int length = sizeof(int) + jobCount * sizeof(int) + 6 * sizeof(float);
 
 	buffer = new char[length];
+	bufferLen = length;
 
 	float * bufferFloat = (float*)buffer;
 	*bufferFloat++ = player->camPosition.x;
@@ -50,8 +51,12 @@ JobSet::JobSet( int id, int jobCount ) : jobs(nullptr), buffer(nullptr) {
 }
 
 JobSet::~JobSet() {
-	if(jobs!=nullptr)
+	if(jobs!=nullptr) {
 		delete[] jobs;
-	if(buffer!=nullptr)
+		jobs = nullptr;
+	}
+	if(buffer!=nullptr) {
 		delete[] buffer;
+		buffer = nullptr;
+	}
 }

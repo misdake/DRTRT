@@ -37,7 +37,7 @@
     <ClCompile Include="..\Code\RayTracing\Object\Sphere.cpp" />
     <ClCompile Include="..\Code\RayTracing\Painter\Painter.cpp" />
     <ClCompile Include="..\Code\RayTracing\Player\Player.cpp" />
-    <ClCompile Include="..\Code\Server\Main.cpp" />
+    <ClCompile Include="..\Code\Server\ServerMain.cpp" />
     <ClCompile Include="..\Code\Server\ServerPlayer.cpp" />
     <ClCompile Include="..\Code\Util\Matrix.cpp" />
     <ClCompile Include="..\Code\Util\MultiThreadedWorker.cpp" />

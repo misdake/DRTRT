@@ -1,2 +1,114 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Network">
+      <UniqueIdentifier>{d9646a5b-823c-4486-8f2a-60de0083fb10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RayTracing">
+      <UniqueIdentifier>{43f05a32-40bd-4483-9f13-478e37090694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RayTracing\Object">
+      <UniqueIdentifier>{9fd1332d-70e6-4a4d-949f-4874bdc75e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RayTracing\Painter">
+      <UniqueIdentifier>{6ef09860-a8b1-4297-ba36-3c71bc9f4e5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{2cea93a8-74cb-4c8d-abf5-cda290f45342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client">
+      <UniqueIdentifier>{83d97e0e-2756-42ee-923b-0abe7cea363c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Code\Network\ImagePacket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Network\JobSet.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Network\NetworkNode.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Network\Node.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Object\Mesh.cpp">
+      <Filter>RayTracing\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Object\Object.cpp">
+      <Filter>RayTracing\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Object\Sphere.cpp">
+      <Filter>RayTracing\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Painter\Painter.cpp">
+      <Filter>RayTracing\Painter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RayTracing\Player\Player.cpp">
+      <Filter>RayTracing\Painter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Util\Matrix.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Util\MultiThreadedWorker.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Util\Vector.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Client\ClientPlayer.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Client\ClientMain.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Code\Network\ImagePacket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Network\JobSet.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Network\NetworkNode.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Network\Node.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Server\Main.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Object\Mesh.h">
+      <Filter>RayTracing\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Object\Object.h">
+      <Filter>RayTracing\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Object\Sphere.h">
+      <Filter>RayTracing\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Painter\Painter.h">
+      <Filter>RayTracing\Painter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RayTracing\Player\Player.h">
+      <Filter>RayTracing\Painter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Util\MyMath.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Util\Matrix.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Util\MultiThreadedWorker.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Util\Vector.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Client\ClientPlayer.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

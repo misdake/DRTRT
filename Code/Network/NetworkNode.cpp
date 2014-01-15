@@ -12,7 +12,7 @@ NetworkNode::~NetworkNode() {
 }
 
 unsigned int NetworkNode::receiveBufferSize() {
-	return 512;
+	return 1024;
 }
 unsigned short NetworkNode::sendPort() {
 	return sport;

@@ -14,6 +14,8 @@ public:
 	ServerPlayer(void);
 	~ServerPlayer(void);
 
+	void loadClientList(string);
+
 	virtual void load(string);
 
 	virtual void paint();
@@ -22,6 +24,8 @@ public:
 
 protected:
 	virtual void receive(char* buf, unsigned long ip);
+	vector<unsigned long> clients;
+	int frameId;
 
 private:
 	bool * valid; //bool[height]; valid[i]==true -> frameBuffer[i] full.

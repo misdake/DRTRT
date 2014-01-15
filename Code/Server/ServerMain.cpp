@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Main.h"
 
-#include <math.h>
 #include "../../GL Lib/glut.h"
 #include "ServerPlayer.h"
 #include "Painter.h"
@@ -24,8 +23,9 @@ int main(int argc, char *argv[]) {
 
 	player = new ServerPlayer();
 
-	argv[2]="../Scene/scene1.test";
-	player->load(argv[2]);
+	player->load("../Scene/scene1.test");
+	((ServerPlayer*)player)->loadClientList("../Scene/client.test");
+	((ServerPlayer*)player)->start();
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(player->width, player->height);

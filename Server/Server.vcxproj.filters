@@ -92,9 +92,6 @@
     <ClCompile Include="..\Code\RayTracing\Painter\Painter.cpp">
       <Filter>RayTracing\Painter</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Server\Main.cpp">
-      <Filter>Server</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\Server\ServerPlayer.cpp">
       <Filter>Server</Filter>
     </ClCompile>
@@ -109,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\RayTracing\Player\Player.cpp">
       <Filter>RayTracing\Painter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Server\ServerMain.cpp">
+      <Filter>Server</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

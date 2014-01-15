@@ -151,6 +151,7 @@ void Painter::paint()
 	}
 	paint(jobSet);
 	delete jobSet;
+	jobSet = nullptr;
 }
 
 void Painter::paint(JobSet * jobSet) {

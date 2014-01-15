@@ -100,8 +100,10 @@ void Node::stop() {
 	if (receiveThread.joinable())
 		receiveThread.join();
 
-	if (receiveBuffer != nullptr)
+	if (receiveBuffer != nullptr) {
 		delete [] receiveBuffer;
+		receiveBuffer = nullptr;
+	}
 	receiveBuffer = nullptr;
 }
 
@@ -137,8 +139,8 @@ void Node::receiveFunction() {
 		closesocket(serverSocket);    //¹Ø±ÕÌ×½Ó×Ö
 		return;
 	}
-	unsigned long mode = 1;  // 1 to enable non-blocking socket
-	ioctlsocket(serverSocket, FIONBIO, &mode);
+	//unsigned long mode = 1;  // 1 to enable non-blocking socket
+	//ioctlsocket(serverSocket, FIONBIO, &mode);
 
 	for (;;) {
 		if (!wsaReady || !receiveRunning) {

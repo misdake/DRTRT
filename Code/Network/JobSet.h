@@ -4,6 +4,8 @@ using std::vector;
 
 class JobSet
 {
+public:
+	JobSet(){};
 	//Build
 public:
 	JobSet(int id, int jobCount);
@@ -18,6 +20,7 @@ public:
 public:
 	JobSet(int id, vector<int>& jobs);
 	char * buffer;
+	int bufferLen;
 
 public:
 	~JobSet();

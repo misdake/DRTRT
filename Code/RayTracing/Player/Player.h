@@ -36,6 +36,7 @@ public:
 	void setSize(int width, int height) {
 		if (frameBuffer != nullptr) {
 			delete [] frameBuffer;
+			frameBuffer = nullptr;
 		}
 		this->width = width;
 		this->height = height;

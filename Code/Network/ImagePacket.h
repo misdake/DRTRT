@@ -12,6 +12,7 @@ public:
 public:
 	ImagePacket(int id, float* rawData, int job);
 	char * buffer;
+	int bufferLen;
 
 public:
 	~ImagePacket();
